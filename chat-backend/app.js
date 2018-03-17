@@ -10,6 +10,22 @@ var users = require('./routes/users');
 
 var app = express();
 
+var server = app.listen(8080, function() {
+  console.log('listening at 8080');
+})
+
+const socket = require('socket.io');
+
+io = socket(server);
+io.on('connection', (socket) => {
+  console.log(socket.id);
+  var socketId = socket.id;
+  io.emit('CONNECTION', socketId);
+  socket.on('SEND_MESSAGE', function(data) {
+    io.emit('RECIEVE_MESSAGE', data);
+  })
+})
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
