@@ -13,7 +13,7 @@ class Chat extends Component {
         <div className='messageList'>
           <ul>
             {this.props.messages.map(function(message) {
-              return(<li>{message.message}</li>)
+              return(<li>{message.message}:{message.timeStamp}</li>)
             })}
           </ul>
         </div>

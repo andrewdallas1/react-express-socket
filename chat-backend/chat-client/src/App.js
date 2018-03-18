@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import io from 'socket.io-client';
 import Chat from './components/Chat';
+import moment from 'moment';
 
 class App extends Component {
   constructor(props) {
@@ -12,7 +13,8 @@ class App extends Component {
       user: '',
       socketId: null,
       messages: [],
-      message: ''
+      message: '',
+      timeStamp: null
     }
 
     this.socket = io('localhost:8080');
@@ -26,7 +28,8 @@ class App extends Component {
     this.sendMessage = e => {
       e.preventDefault();
       this.socket.emit('SEND_MESSAGE', {
-        message: this.state.message
+        message: this.state.message,
+        timeStamp: this.state.timeStamp
       });
       this.setState({
         message: ''
@@ -47,7 +50,8 @@ class App extends Component {
 
     this.handleChange = e => {
       this.setState({
-        message: e.target.value
+        message: e.target.value,
+        timeStamp: moment().format('MMMM Do YYYY, h:mm a')
       });
       console.log(this.state.message);
     }
