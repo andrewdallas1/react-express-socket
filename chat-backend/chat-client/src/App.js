@@ -67,7 +67,12 @@ class App extends Component {
         </p>
         <div>
           <h1>Socket Connected. Id: {this.state.socketId}</h1>
-          <Chat/>
+          <Chat
+            handleChange={this.handleChange}
+            sendMessage={this.sendMessage}
+            message={this.state.message}
+            messages={this.state.messages}
+          />
         </div>
       </div>
     );

@@ -10,7 +10,9 @@ var users = require('./routes/users');
 
 var app = express();
 
-var server = app.listen(8080, function() {
+var port = process.env.PORT || 8080;
+
+var server = app.listen(port, function() {
   console.log('listening at 8080');
 })
 
